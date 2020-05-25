@@ -15,9 +15,9 @@ export class ReportComponent implements OnInit {
   listAdmin = [
     {
       id: 2323,
-      name:"bache",
+      name: "bache",
       gravedad: 3,
-      description:"Es un bache bien cabron que lleva varios dias asi",
+      description: "Es un bache bien cabron que lleva varios dias asi",
       lat: 25.7582117,
       lng: -108.9833722,
       phone: 8188080,
@@ -67,6 +67,10 @@ export class ReportComponent implements OnInit {
 
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
+  }
+  onPage(event) {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {}, 100);
   }
 
   delete() {}

@@ -49,20 +49,24 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-      for (let i = 0; i < 5; i++) {
-          let arr = {
-            id: this.getRandomInt(100, 2),
-            name: this.getRandomInt(100, 2),
-            lastname: this.getRandomInt(100, 2),
-            email: this.getRandomInt(100, 2),
-            phone: this.getRandomInt(100, 2),
-          };
+    for (let i = 0; i < 5; i++) {
+      let arr = {
+        id: this.getRandomInt(100, 2),
+        name: this.getRandomInt(100, 2),
+        lastname: this.getRandomInt(100, 2),
+        email: this.getRandomInt(100, 2),
+        phone: this.getRandomInt(100, 2),
+      };
       this.listAdmin.push(arr);
     }
   }
 
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
+  }
+  onPage(event) {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {}, 100);
   }
 
   delete() {}
