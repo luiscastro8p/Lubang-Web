@@ -12,9 +12,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "modernizr": "modernizr -c modernizr-config.json -d src/modernizr.js",
-    "postinstall": "node ./node_modules/protractor/bin/webdriver-manager update",
     "e2e": "ng e2e",
-    "heroku-postbuild": "ng build --prod"
+    "heroku-postbuild": "ng build --prod",
+    "postinstall": "ng build --aot --prod"
   },
   "dependencies": {
     "@agm/core": "1.0.0-beta.5",
