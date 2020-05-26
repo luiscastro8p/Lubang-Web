@@ -1,6 +1,6 @@
 const Home = {
   text: "Administradores",
-  link: "/home",
+  link: "/list",
   icon: "icon-user",
 };
 
