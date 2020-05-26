@@ -1,5 +1,5 @@
 {
-  "name": "angle",
+  "name": "lubang-web",
   "version": "0.0.0",
   "description": "Angle - Bootstrap Admin Template",
   "author": "@themicon_co",
@@ -13,8 +13,7 @@
     "lint": "ng lint",
     "modernizr": "modernizr -c modernizr-config.json -d src/modernizr.js",
     "e2e": "ng e2e",
-    "heroku-postbuild": "ng build --prod",
-    "postinstall": "ng build --aot --prod"
+    "heroku-postbuild": "ng build --prod"
   },
   "dependencies": {
     "@agm/core": "1.0.0-beta.5",
@@ -43,6 +42,7 @@
     "core-js": "2.5.4",
     "easy-pie-chart": "2.1.7",
     "enhanced-resolve": "3.3.0",
+    "express": "^4.17.1",
     "flot": "themicon/flot",
     "fullcalendar": "3.9.0",
     "ika.jvectormap": "themicon/ika.jvectormap",
