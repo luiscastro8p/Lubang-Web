@@ -14,74 +14,108 @@
 
 <div class="main-container">
   <div class="row">
-    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-      <em class="fa-2x mr-2 fas fa-search pos-icon"></em>
-      <input class="form-control mb-2" type="text" placeholder="Buscar..." (keyup)='updateFilter($event)'
-        style="border-radius: 21px;" />
-    </div>
-    <div class="col text-right">
+    <div class="col">
+      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+        <agm-marker *ngFor="let item of listReport" [latitude]="item.lat" [longitude]="item.lng"
+          [markerDraggable]="false" (markerClick)="markerClicked($event)">
+          <agm-info-window [latitude]="item.lat" [longitude]="item.lng" [disableAutoPan]="false" #infoWindow>
+            <div>
+              <span>
+                <h5><b>{{item.name}}</b></h5>
+                <p><b>{{item.description}}</b></p>
+                <div class="d-flex justify-content-center align-items-center">
+                  <Button type="button" class="btn btn-info" [routerLink]="[ '/Reportes', item.id ]">Ver más</Button>
+                </div>
+              </span>
+            </div>
 
+          </agm-info-window>
+        </agm-marker>
+      </agm-map>
     </div>
   </div>
-
   <div class="card card-default mt-4">
     <div class="card-body ">
-      <ngx-datatable #table class="bootstrap expandable material fullscreen "
-        style="height: calc(90vh - 270px); box-shadow: none; width: 100%;" [columnMode]="'force'" [headerHeight]="50"
-        [footerHeight]="50" [rowHeight]="60" [scrollbarV]="true" [scrollbarH]="true" [rows]='listAdmin'
-        (page)="onPage($event)">
-        <!-- Column Templates -->
-        <ngx-datatable-column name="#" [width]="50" [canAutoResize]="false">
-          <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
-            <strong>{{rowIndex + 1}}</strong>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Gravedad" [width]="100" [canAutoResize]="false">
-          <ng-template let-row="row" ngx-datatable-cell-template class="text-center">
-            <div *ngIf="row.gravedad === 1">
-              <div style="color: green;font-size: 25px;">
-                <a class="fas fa-square"></a>
-              </div>
-            </div>
-            <div *ngIf="row.gravedad === 2">
-              <div style="color: orange;font-size: 25px;">
-                <a class="fas fa-square"></a>
-              </div>
-            </div>
-            <div *ngIf="row.gravedad === 3">
-              <div style="color: red;font-size: 25px;">
-                <a class="fas fa-square"></a>
-              </div>
-            </div>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="¿Qué es?" [width]="120" [canAutoResize]="false">
-          <ng-template let-row="row" ngx-datatable-cell-template>
-            {{row.name}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Descripción">
-          <ng-template let-row="row" ngx-datatable-cell-template>
-            {{row.description}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Teléfono">
-          <ng-template let-row="row" ngx-datatable-cell-template>
-            {{row.phone}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Acciones" class="d-flex justify-content-center align-items-center text-center">
-          <ng-template let-row="row" ngx-datatable-cell-template>
-            <button class="btn btn-info m-1" type="button" [routerLink]="['/Reportes/', row.id]">
-              <a class="fas fa-eye"></a> </button>
-            <button class="btn btn-success m-1" type="button" [routerLink]="['/Reportes/', row.id]">
-              <a class="fas fa-pencil-alt"></a> </button>
-            <button class="btn btn-danger" (click)="delete(row)">
-              <a class="fas fa-trash-alt"></a>
-            </button>
-          </ng-template>
-        </ngx-datatable-column>
-      </ngx-datatable>
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+          <em class="fa-2x mr-2 fas fa-search pos-icon"></em>
+          <input class="form-control mb-2" type="text" placeholder="Buscar..." (keyup)='updateFilter($event)'
+            style="border-radius: 21px;" />
+        </div>
+        <div class="col text-right">
+
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col">
+          <ngx-datatable #table class="bootstrap expandable material fullscreen "
+            style="height: calc(51vh  - 270px); box-shadow: none; width: 100%;" [columnMode]="'force'"
+            [headerHeight]="50" [footerHeight]="50" [rowHeight]="60" [scrollbarV]="true" [scrollbarH]="true"
+            [rows]='listReport' (page)="onPage($event)">
+            <!-- Column Templates -->
+            <ngx-datatable-column name="#" [width]="50" [canAutoResize]="false">
+              <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                <strong>{{rowIndex + 1}}</strong>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Gravedad" [width]="100" [canAutoResize]="false">
+              <ng-template let-row="row" ngx-datatable-cell-template class="text-center">
+                <div *ngIf="row.priority === 1">
+                  <div style="color: green;font-size: 25px;">
+                    <a class="fas fa-square"></a>
+                  </div>
+                </div>
+                <div *ngIf="row.priority === 2">
+                  <div style="color: orange;font-size: 25px;">
+                    <a class="fas fa-square"></a>
+                  </div>
+                </div>
+                <div *ngIf="row.priority === 3">
+                  <div style="color: red;font-size: 25px;">
+                    <a class="fas fa-square"></a>
+                  </div>
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="¿Qué es?">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.name}}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Descripción">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.description}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Status">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <div *ngIf="row.status === 'CREATED'">
+                  <span class="badge badge-danger"> Creado</span>
+                </div>
+                <div *ngIf="row.status === 'ATTENDED'">
+                  <span class="badge badge-warning"> Atendido</span>
+                </div>
+                <div *ngIf="row.status === 'RESOLVED'">
+                  <span class="badge badge-success"> Resuelto</span>
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Acciones" class="d-flex justify-content-center align-items-center text-center">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <button class="btn btn-info m-1" type="button" [routerLink]="['/Reportes/', row.id]">
+                  <a class="fas fa-eye"></a> </button>
+                <button class="btn btn-success m-1" type="button" [routerLink]="['/Reportes/', row.id]">
+                  <a class="fas fa-pencil-alt"></a> </button>
+                <button class="btn btn-danger" (click)="delete(row)">
+                  <a class="fas fa-trash-alt"></a>
+                </button>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
     </div>
   </div>
 </div>

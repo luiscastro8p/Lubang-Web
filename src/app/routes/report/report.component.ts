@@ -12,15 +12,46 @@ export class ReportComponent implements OnInit {
   @ViewChild(DatatableComponent) table: DatatableComponent;
   filterPost = "";
   editing = {};
-  listAdmin = [
+  lat: number = 25.8132204;
+  lng: number = -108.9858821;
+  zoom = 12;
+  listReport = [
     {
-      id: 2323,
+      id: this.getRandomInt(10123123, 1),
       name: "bache",
-      gravedad: 3,
+      status: "RESOLVED",
+      priority: this.getRandomInt(4, 1),
       description: "Es un bache bien cabron que lleva varios dias asi",
+      lat: 25.7753341,
+      lng: -109.0192314,
+    },
+    {
+      id: this.getRandomInt(10123123, 1),
+      name: "Señal de stop rayada",
+      status: "RESOLVED",
+      description: "unos cholos lo hicieron hace tiempo",
+      priority: this.getRandomInt(4, 1),
       lat: 25.7582117,
       lng: -108.9833722,
-      phone: 8188080,
+    },
+    {
+      id: this.getRandomInt(10123123, 1),
+      name: "la calle esta del asco",
+      status: "ATTENDED",
+      description: "arreglen esto que ya tienen mucho ",
+      priority: this.getRandomInt(4, 1),
+      lat: 25.7582117,
+      lng: -108.9833722,
+    },
+    {
+      id: this.getRandomInt(10123123, 1),
+      name: "Boulevart mal pavimentado ",
+      status: "CREATED",
+      description:
+        "Hace dias realizaron unas actividades a las palmas y los mismos trabajadores dejaron huecos en el boulevart",
+      priority: this.getRandomInt(4, 1),
+      lat: 25.7582117,
+      lng: -108.9833722,
     },
   ];
   temp = [];
@@ -35,7 +66,7 @@ export class ReportComponent implements OnInit {
     // filter our data
     const temp = this.temp.filter(function (d) {
       return (
-        d.gravedad.toLowerCase().indexOf(val) !== -1 ||
+        d.gravity.toLowerCase().indexOf(val) !== -1 ||
         d.description.toLowerCase().indexOf(val) !== -1 ||
         d.phone.toLowerCase().indexOf(val) !== -1 ||
         d.name.toLowerCase().indexOf(val) !== -1 ||
@@ -45,25 +76,12 @@ export class ReportComponent implements OnInit {
     console.log(temp);
 
     // update the rows
-    this.listAdmin = temp;
+    this.listReport = temp;
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }
 
-  ngOnInit() {
-    for (let i = 0; i < 5; i++) {
-      let arr = {
-        id: this.getRandomInt(100, 2),
-        name: "bache" + (i + 1),
-        gravedad: this.getRandomInt(4, 1),
-        description: "Es un bache bien cabron que lleva varios dias asi",
-        lat: 25.7582117,
-        lng: -108.9833722,
-        phone: this.getRandomInt(1000000, 2),
-      };
-      this.listAdmin.push(arr);
-    }
-  }
+  ngOnInit() {}
 
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -74,4 +92,8 @@ export class ReportComponent implements OnInit {
   }
 
   delete() {}
+  markerClicked(value) {
+    console.log("entro");
+    
+  }
 }
