@@ -22,6 +22,11 @@ export const routes = [
                path: "Reportes",
                loadChildren: "./report/report.module#ReportModule",
              },
+             {
+               path: "Reportes/:id",
+               loadChildren:
+                 "./report-form/report-form.module#ReportFormModule",
+             },
            ],
          },
 

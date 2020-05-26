@@ -72,9 +72,9 @@
         </ngx-datatable-column>
         <ngx-datatable-column name="Acciones" class="d-flex justify-content-center align-items-center text-center">
           <ng-template let-row="row" ngx-datatable-cell-template>
-            <button class="btn btn-info m-1" type="button" [routerLink]="['/Admin-Agricola/', id]">
+            <button class="btn btn-info m-1" type="button" [routerLink]="['/Reportes/', row.id]">
               <a class="fas fa-eye"></a> </button>
-            <button class="btn btn-success m-1" type="button" [routerLink]="['/Admin-Agricola/', id]">
+            <button class="btn btn-success m-1" type="button" [routerLink]="['/Reportes/', row.id]">
               <a class="fas fa-pencil-alt"></a> </button>
             <button class="btn btn-danger" (click)="delete(row)">
               <a class="fas fa-trash-alt"></a>

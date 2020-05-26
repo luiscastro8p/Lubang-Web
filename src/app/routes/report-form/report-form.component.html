@@ -1,0 +1,89 @@
+<div class="content-heading">
+  <div>Agregar administrador de lubang
+    <!-- <small>Native Angular input validation</small> -->
+  </div>
+</div>
+<button class="mr-1 btn btn-labeled btn-info mb-2" type="button" [routerLink]="['/Reportes']">
+  <span class="btn-label"><i class="fa fa-arrow-left"></i>
+  </span>Regresar</button>
+<div class="container-fluid mt-5">
+  <div class="row d-flex justify-content-center align-content-center ">
+    <div class="col-12 col-sm-10 col-md-9 col-lg-9 col-xl-8">
+      <form [formGroup]="report" (submit)="register(report.value)">
+        <div class="card ">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <div class="form-group row">
+                  <div class="col ">
+                    <label>¿Qué es?</label>
+                    <input class="form-control" formControlName="name" type="text" />
+                    <span class="text-danger" *ngIf="report.controls['name'].errors?.required">Ingresa un
+                      campo
+                      válido</span>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col">
+                    <label>Descripción</label>
+                    <textarea class="form-control" formControlName="description" type="email"
+                      placeholder="example@example.com"></textarea>
+                    <span class="text-danger" *ngIf="report.controls['description'].errors?.required">Este campo es
+                      requerido</span>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col">
+                    <label>Teléfono</label>
+                    <input class="form-control" type="number" formControlName="phone" />
+                    <span class="text-danger" *ngIf="report.controls['phone'].errors">Ingresa un numero
+                      válido</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 text-center">
+                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                  <agm-marker [latitude]="lat" [longitude]="lng" [opacity]="0.8" [markerDraggable]="false">
+                  </agm-marker>
+                </agm-map>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer card-default text-center">
+            <button class="btn btn-info" type="submit" [disabled]="!report.valid"><em
+                class="fa mr-2 fas fa-plus"></em>Guardar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div bsModal #Image="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  aria-hidden="false">
+  <div class="modal-dialog modal-lg" style="height: 83%;
+    width: 50%;">
+    <div class="modal-content" style="width: 116%;">
+      <div class="modal-header p-0">
+        <div class="brand-logo" style="font-size: 20px; padding: 8px;">
+          <img class="img-fluid" src="assets/img/logo.png" alt="App Logo" style="height: 54px;" />
+          Imagen
+        </div>
+        <div>
+          <button type="button" class="close" aria-label="Close" (click)="Image.hide()"
+            style="font-size: 34px; padding: 23px;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body p-1">
+        <div class="container">
+          <div>
+            <img [src]="url + img" alt='' width="100%">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END row-->
