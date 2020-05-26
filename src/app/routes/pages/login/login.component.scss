@@ -5,7 +5,7 @@
 }
 
 .wd-xl {
-  width: 28%;
+  width: 90%;
 }
 
 .card-flat {
@@ -14,7 +14,21 @@
 
 .img-logo {
   img {
-    border-radius: 100px;
+    border-radius: 1000px;
     width: 27%;
   }
+}
+
+@media (min-width: 701px) {
+  .wd-xl {
+    width: 70%;
+  }
+
+}
+
+@media (min-width: 1620px) {
+  .wd-xl {
+    width: 30%;
+  }
+
 }
