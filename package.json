@@ -43,7 +43,6 @@
     "easy-pie-chart": "2.1.7",
     "enhanced-resolve": "3.3.0",
     "express": "^4.17.1",
-    "flot": "themicon/flot",
     "fullcalendar": "3.9.0",
     "ika.jvectormap": "themicon/ika.jvectormap",
     "intl": "1.2.5",
