@@ -1,7 +1,7 @@
 {
   "name": "lubang-web",
   "version": "0.0.0",
-  "description": "Angle - Bootstrap Admin Template",
+  "description": "Lubang",
   "author": "@themicon_co",
   "license": "https://wrapbootstrap.com/help/licenses",
   "private": true,
@@ -111,5 +111,9 @@
     "tslint": "5.11.0",
     "typescript": "3.1.1",
     "webdriver-manager": "10.2.5"
+  },
+  "engines": {
+    "node": "12.16.2",
+    "npm": "6.14.4"
   }
 }
