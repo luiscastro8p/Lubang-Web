@@ -15,9 +15,15 @@ export class HomeComponent implements OnInit {
   listAdmin = [
     {
       id: 2323,
-      name: "Luis",
-      lastname: "Castro",
+      name: "Luis Armando Castro Cota",
       email: "luisarmandocastro@gmail.com",
+      phone: 8188080,
+    },
+    {
+      id: 848484,
+      name: "Jose Francisco Osuna Caranza",
+      lastname: "Castro",
+      email: "ChepeCharmander@gmail.com",
       phone: 8188080,
     },
   ];
@@ -48,18 +54,7 @@ export class HomeComponent implements OnInit {
     this.table.offset = 0;
   }
 
-  ngOnInit() {
-    for (let i = 0; i < 5; i++) {
-      let arr = {
-        id: this.getRandomInt(100, 2),
-        name: this.getRandomInt(100, 2),
-        lastname: this.getRandomInt(100, 2),
-        email: this.getRandomInt(100, 2),
-        phone: this.getRandomInt(100, 2),
-      };
-      this.listAdmin.push(arr);
-    }
-  }
+  ngOnInit() {}
 
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
