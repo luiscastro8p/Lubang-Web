@@ -21,7 +21,7 @@
           <agm-info-window [latitude]="item.lat" [longitude]="item.lng" [disableAutoPan]="false" #infoWindow>
             <div>
               <span>
-                <h5><b>{{item.name}}</b></h5>
+                <h5><b>{{item.reportType.name}}</b></h5>
                 <p><b>{{item.description}}</b></p>
                 <div class="d-flex justify-content-center align-items-center">
                   <Button type="button" class="btn btn-info" [routerLink]="[ '/Reportes', item.id ]">Ver más</Button>
@@ -80,7 +80,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="¿Qué es?">
               <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row.name}}
+                {{row.reportType.name}}
               </ng-template>
             </ngx-datatable-column>
 
@@ -104,8 +104,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Acciones" class="d-flex justify-content-center align-items-center text-center">
               <ng-template let-row="row" ngx-datatable-cell-template>
-                <button class="btn btn-info m-1" type="button" [routerLink]="['/Reportes/', row.id]">
-                  <a class="fas fa-eye"></a> </button>
+
                 <button class="btn btn-success m-1" type="button" [routerLink]="['/Reportes/', row.id]">
                   <a class="fas fa-pencil-alt"></a> </button>
                 <button class="btn btn-danger" (click)="delete(row)">

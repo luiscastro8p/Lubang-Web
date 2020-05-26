@@ -3,6 +3,7 @@ import { SettingsService } from "../../../core/settings/settings.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { CustomValidators } from "ng2-validation";
 import { ActivatedRoute, Router } from "@angular/router";
+import { AuthData } from "../../../services/auth.service";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
     public settings: SettingsService,
     fb: FormBuilder,
     public router: Router,
+    public AuthService: AuthData
   ) {
     this.valForm = fb.group({
       email: [
@@ -31,8 +33,12 @@ export class LoginComponent implements OnInit {
       this.valForm.controls[c].markAsTouched();
     }
     if (this.valForm.valid) {
-      console.log("Valid!");
-      console.log(value);
+      this.AuthService.login(value).subscribe(resp => {
+          this.router.navigateByUrl('/list')
+      }, err => {
+          console.log(err);
+          
+      })
     }
   }
 

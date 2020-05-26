@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateService, TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpModule } from "@angular/http";
 
 import { AppComponent } from './app.component';
 
@@ -18,25 +19,24 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
-    imports: [
-        HttpClientModule,
-        BrowserAnimationsModule, // required for ng2-tag-input
-        CoreModule,
-        LayoutModule,
-        SharedModule.forRoot(),
-        RoutesModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: (createTranslateLoader),
-                deps: [HttpClient]
-            }
-        })
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
+  declarations: [AppComponent],
+  imports: [
+    HttpClientModule,
+    BrowserAnimationsModule, // required for ng2-tag-input
+    CoreModule,
+    HttpModule,
+    LayoutModule,
+    SharedModule.forRoot(),
+    RoutesModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

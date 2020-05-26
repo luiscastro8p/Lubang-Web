@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UserblockService } from './userblock.service';
+import { Uris } from '../../../services/Uris';
+
 
 @Component({
     selector: 'app-userblock',
@@ -9,6 +11,8 @@ import { UserblockService } from './userblock.service';
 })
 export class UserblockComponent implements OnInit {
     user: any;
+    name: any;
+    Url = Uris.API_IMAGE
     constructor(public userblockService: UserblockService) {
 
         this.user = {
@@ -17,6 +21,11 @@ export class UserblockComponent implements OnInit {
     }
 
     ngOnInit() {
+        let user = JSON.parse(localStorage.getItem("USER"))
+        console.log(user);
+
+        this.name = user.admin.name
+        
     }
 
     userBlockIsVisible() {

@@ -9,16 +9,23 @@
 <div class="container-fluid mt-5">
   <div class="row d-flex justify-content-center align-content-center ">
     <div class="col-12 col-sm-10 col-md-9 col-lg-9 col-xl-8">
+
       <form [formGroup]="report" (submit)="register(report.value)">
+
         <div class="card ">
           <div class="card-body">
             <div class="row">
+
               <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <div class="d-flex justify-content-center align-items-center">
+                  <img [src]="image" alt="img" width="300" height="300" style="border-radius:40px;">
+                </div>
                 <div class="form-group row">
                   <div class="col ">
+
                     <label>¿Qué es?</label>
-                    <input class="form-control" formControlName="name" type="text" />
-                    <span class="text-danger" *ngIf="report.controls['name'].errors?.required">Ingresa un
+                    <input class="form-control" formControlName="reportTypeId" type="text" />
+                    <span class="text-danger" *ngIf="report.controls['reportTypeId'].errors?.required">Ingresa un
                       campo
                       válido</span>
                   </div>
@@ -32,14 +39,60 @@
                       requerido</span>
                   </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row m-0">
                   <div class="col">
-                    <label>Teléfono</label>
-                    <input class="form-control" type="number" formControlName="phone" />
-                    <span class="text-danger" *ngIf="report.controls['phone'].errors">Ingresa un numero
-                      válido</span>
+                    <div data-intro="Selecciona tu ocupación." class="form-group">
+                      <label>Gravedad </label><br>
+                      <select formControlName="priority" class="form-control">
+                        <option value="" disabled>
+                          Seleccione una ocupación...
+                        </option>
+                        <option value="1" class="form-control">Buen estado</option>
+                        <option value="2">Tomar precaución</option>
+                        <option value="3">Mal estado</option>
+                      </select>
+
+                    </div>
                   </div>
                 </div>
+                <div class="form-group row m-0">
+                  <div class="col">
+                    <div data-intro="Selecciona su status." class="form-group">
+                      <label>Status </label><br>
+                      <select formControlName="status" class="form-control">
+                        <option value="" disabled>
+                          Seleccione su status...
+                        </option>
+                        <option value="CREATED" class="form-control">Creado</option>
+                        <option value="ATTENDED">Atendiendo</option>
+                        <option value="RESOLVED">APROBADA</option>
+                      </select>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                  <div class="form-group row ">
+                    <div class="col">
+                      <div *ngIf="data.priority === 1">
+                        <div style="color: green;font-size: 25px;">
+                          <a class="fas fa-square"></a>
+                        </div>
+                      </div>
+                      <div *ngIf="data.priority === 2">
+                        <div style="color: orange;font-size: 25px;">
+                          <a class="fas fa-square"></a>
+                        </div>
+                      </div>
+                      <div *ngIf="data.priority === 3">
+                        <div style="color: red;font-size: 25px;">
+                          <a class="fas fa-square"></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
               <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 text-center">
                 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">

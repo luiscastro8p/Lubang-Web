@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { DatatableComponent } from "@swimlane/ngx-datatable";
 import Swal from "sweetalert2";
+import { AuthData } from "../../services/auth.service";
 
 @Component({
   selector: "app-home",
@@ -15,50 +16,12 @@ export class ReportComponent implements OnInit {
   lat: number = 25.8132204;
   lng: number = -108.9858821;
   zoom = 12;
-  listReport = [
-    {
-      id: this.getRandomInt(10123123, 1),
-      name: "bache",
-      status: "RESOLVED",
-      priority: this.getRandomInt(4, 1),
-      description: "Es un bache bien cabron que lleva varios dias asi",
-      lat: 25.7753341,
-      lng: -109.0192314,
-    },
-    {
-      id: this.getRandomInt(10123123, 1),
-      name: "Señal de stop rayada",
-      status: "RESOLVED",
-      description: "unos cholos lo hicieron hace tiempo",
-      priority: this.getRandomInt(4, 1),
-      lat: 25.7582117,
-      lng: -108.9833722,
-    },
-    {
-      id: this.getRandomInt(10123123, 1),
-      name: "la calle esta del asco",
-      status: "ATTENDED",
-      description: "arreglen esto que ya tienen mucho ",
-      priority: this.getRandomInt(4, 1),
-      lat: 25.7582117,
-      lng: -108.9833722,
-    },
-    {
-      id: this.getRandomInt(10123123, 1),
-      name: "Boulevart mal pavimentado ",
-      status: "CREATED",
-      description:
-        "Hace dias realizaron unas actividades a las palmas y los mismos trabajadores dejaron huecos en el boulevart",
-      priority: this.getRandomInt(4, 1),
-      lat: 25.7582117,
-      lng: -108.9833722,
-    },
-  ];
+  listReport = [];
   temp = [];
   timeout: any;
   expanded: any = {};
   selected = [];
-  constructor() {}
+  constructor(public DataService: AuthData) {}
   updateFilter(event) {
     console.log("entro");
 
@@ -81,7 +44,15 @@ export class ReportComponent implements OnInit {
     this.table.offset = 0;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getData();
+  }
+  getData() {
+     this.DataService.listReport().subscribe((resp) => {
+       console.log(resp);
+       this.listReport = resp;
+     });
+  }
 
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -91,9 +62,26 @@ export class ReportComponent implements OnInit {
     this.timeout = setTimeout(() => {}, 100);
   }
 
-  delete() {}
+  delete(value) {
+    Swal.fire({
+      title: "Seguro que quieres eliminar a",
+      text: value.name,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, eliminar!",
+      cancelButtonText: "No, cancelar!",
+    }).then((result) => {
+      if (result.value) {
+        this.DataService.DeleteReport(value.id).subscribe(resp => {
+
+        });
+      
+      }
+    });
+  }
   markerClicked(value) {
     console.log("entro");
-    
   }
 }

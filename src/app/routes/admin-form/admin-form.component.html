@@ -14,19 +14,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                <div class="form-group row">
-                  <div class="col ">
-                    <label>Nombre de usuario</label>
-                    <input *ngIf="!id" class="form-control" formControlName="username" type="text" />
-                    <input *ngIf="id" class="form-control" formControlName="username" type="text" disabled />
-
-                    <span class="text-danger" *ngIf="admin.controls['username'].errors?.required">Ingresa un
-                      campo
-                      válido</span>
-                    <span class="text-danger" *ngIf="admin.controls['username'].errors?.cannotContainSpace">
-                      No se permiten espacios en este campo</span>
-                  </div>
-                </div>
+                <img [src]="filestring" alt="img" width="500" height="600">
                 <div class="form-group row">
                   <div class="col">
                     <label>Email</label>
@@ -49,12 +37,28 @@
                       válido</span>
                   </div>
                 </div>
+                <div class="form-group row">
+                  <div class="col">
+                    <label>Apellido</label>
+                    <input class="form-control" formControlName="lastName" type="text" />
+                    <span class="text-danger" *ngIf="admin.controls['lastName'].errors?.required">Ingresa un campo
+                      válido</span>
+                  </div>
+                </div>
 
                 <div class="form-group row">
                   <div class="col">
                     <label>Teléfono</label>
                     <input class="form-control" type="number" formControlName="phone" />
                     <span class="text-danger" *ngIf="admin.controls['phone'].errors">Ingresa un numero
+                      válido</span>
+                  </div>
+                </div>
+                <div class="form-group row" *ngIf="!id">
+                  <div class="col">
+                    <label>Contraseña</label>
+                    <input class="form-control" formControlName="password" type="password" />
+                    <span class="text-danger" *ngIf="admin.controls['password'].errors?.required">Ingresa un campo
                       válido</span>
                   </div>
                 </div>

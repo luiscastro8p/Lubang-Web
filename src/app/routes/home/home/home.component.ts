@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { DatatableComponent } from "@swimlane/ngx-datatable";
 import Swal from "sweetalert2";
+import { AuthData } from "../../../services/auth.service";
+import { async } from "@angular/core/testing";
 
 @Component({
   selector: "app-home",
@@ -12,26 +14,12 @@ export class HomeComponent implements OnInit {
   @ViewChild(DatatableComponent) table: DatatableComponent;
   filterPost = "";
   editing = {};
-  listAdmin = [
-    {
-      id: 2323,
-      name: "Luis Armando Castro Cota",
-      email: "luisarmandocastro@gmail.com",
-      phone: 8188080,
-    },
-    {
-      id: 848484,
-      name: "Jose Francisco Osuna Caranza",
-      lastname: "Castro",
-      email: "ChepeCharmander@gmail.com",
-      phone: 8188080,
-    },
-  ];
+  listAdmin = [];
   temp = [];
   timeout: any;
   expanded: any = {};
   selected = [];
-  constructor() {}
+  constructor(public dataService: AuthData) {}
   updateFilter(event) {
     console.log("entro");
 
@@ -54,7 +42,9 @@ export class HomeComponent implements OnInit {
     this.table.offset = 0;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getData();
+  }
 
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -63,6 +53,41 @@ export class HomeComponent implements OnInit {
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {}, 100);
   }
+  delete(value) {
+    this.getData()
+    Swal.fire({
+      title: "Seguro que quieres eliminar a",
+      text: value.name,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, eliminar!",
+      cancelButtonText: "No, cancelar!",
+    }).then((result) => {
+      if (result.value) {
+        this.dataService.DeleteAdmin(value.id).subscribe((resp) => {
+          
+        });
+      }
+    });
+  }
 
-  delete() {}
+  getData() {
+    this.dataService.listAdmins().subscribe(
+      (resp) => {
+        
+         this.listAdmin = resp;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  time() {
+    setTimeout(function () {
+      this.getData();
+      this.timeout();
+    }, 1000 / 60);
+  }
 }
