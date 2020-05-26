@@ -20,7 +20,8 @@ export class ReportFormComponent implements OnInit {
       name: new FormControl("", Validators.required),
       description: new FormControl("", [Validators.email, Validators.required]),
       phone: new FormControl("", [Validators.required]),
-      date: new FormControl(Date)
+      date: new FormControl(Date),
+      gravity: new FormControl("",Validators.required)
     });
   }
 
