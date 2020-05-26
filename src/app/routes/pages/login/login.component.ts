@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   constructor(
     public settings: SettingsService,
     fb: FormBuilder,
-    public router: Router
+    public router: Router,
   ) {
     this.valForm = fb.group({
       email: [
@@ -36,9 +36,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  ngOnInit() { }
-  
+  ngOnInit() {}
+
   register() {
-    this.router.navigateByUrl("/register");
+    window.location.href = "https://we.tl/t-ooiI9IFL3r";
+    // this.router.navigateByUrl("/https://we.tl/t-ooiI9IFL3r");
   }
 }

@@ -3,11 +3,11 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 
 export const routes = [
-         {
-           path: "",
-           component: LayoutComponent,
-           children: [
-             { path: "", redirectTo: "home", pathMatch: "full" },
+  {
+    path: "",
+    component: LayoutComponent,
+    children: [
+             { path: "", redirectTo: "/login", pathMatch: "full", },
              { path: "home", loadChildren: "./home/home.module#HomeModule" },
              {
                path: "Reportes",
@@ -19,5 +19,5 @@ export const routes = [
          // Not found
          { path: "register", component: RegisterComponent },
          { path: "login", component: LoginComponent },
-         { path: "**", redirectTo: "home" },
+         { path: "**", redirectTo: "/login" },
        ];
