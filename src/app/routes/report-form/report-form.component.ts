@@ -25,5 +25,8 @@ export class ReportFormComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
+  register(value) {
+    
+  }
 }
