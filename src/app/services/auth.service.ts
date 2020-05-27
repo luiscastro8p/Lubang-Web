@@ -16,57 +16,37 @@ export class AuthData {
   }
 
   login(admin) {
-    return this.http
-      .post(`${Uris.Login}`, admin)
-      .map((response: Response) => response.json());
+    return this.http.post(`${Uris.Login}`, admin).map((response: Response) => response.json());
   }
 
   listAdmins() {
-    return this.http
-      .get(`${Uris.Admin}`, this.jwt())
-      .map((response: Response) => response.json());
+    return this.http.get(`${Uris.Admin}`).map((response: Response) => response.json());
   }
   getAdmin(value) {
-    return this.http
-      .get(`${Uris.Admin}${value}/`)
-      .map((response: Response) => response.json());
+    return this.http.get(`${Uris.Admin}${value}/`).map((response: Response) => response.json());
   }
 
   editAdmin(value, id) {
-    return this.http
-      .put(`${Uris.Admin}${id}/`, value, this.jwt())
-      .map((response: Response) => response.json());
+    return this.http.put(`${Uris.Admin}${id}/`, value).map((response: Response) => response.json());
   }
 
   RegisterAdmin(admin) {
-    return this.http
-      .post(`${Uris.Admin}`, admin)
-      .map((response: Response) => response.json());
+    return this.http.post(`${Uris.Admin}`, admin).map((response: Response) => response.json());
   }
   DeleteAdmin(admin) {
-    return this.http
-      .delete(`${Uris.Admin}${admin}`)
-      .map((response: Response) => response.json());
+    return this.http.delete(`${Uris.Admin}${admin}`).map((response: Response) => response.json());
   }
   getReport(value) {
-    return this.http
-      .get(`${Uris.Report}${value}/`)
-      .map((response: Response) => response.json());
+    return this.http.get(`${Uris.Report}${value}/`).map((response: Response) => response.json());
   }
   listReport() {
-    return this.http
-      .get(`${Uris.Report}`)
-      .map((response: Response) => response.json());
+    return this.http.get(`${Uris.Report}`).map((response: Response) => response.json());
   }
   editReport(value, id) {
-    return this.http
-      .put(`${Uris.Report}${id}/`, value)
-      .map((response: Response) => response.json());
+    return this.http.put(`${Uris.Report}${id}/`, value).map((response: Response) => response.json());
   }
   DeleteReport(report) {
-    return this.http
-      .delete(`${Uris.Report}${report}`)
-      .map((response: Response) => response.json());
+    return this.http.delete(`${Uris.Report}${report}`).map((response: Response) => response.json());
   }
   // delete(value) {
   //   return this.http.delete(`${Uris.API_LOTS_DELETE}${value}/`, this.jwt()).map((response: Response) => response.json())

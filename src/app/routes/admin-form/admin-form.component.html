@@ -14,7 +14,6 @@
           <div class="card-body">
             <div class="row">
               <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                <img [src]="filestring" alt="img" width="500" height="600">
                 <div class="form-group row">
                   <div class="col">
                     <label>Email</label>
@@ -68,8 +67,7 @@
                   <div class="row">
                     <div class="col p-2">
                       <div height="400" width="400">
-                        <img *ngIf="!filestring" src='../../../assets/img/profile.png' width="70%"
-                          style="padding: 0px 30px 0px 30px;">
+
                         <img *ngIf="filestring" [src]='filestring' width="70%" style="padding: 0px 30px 0px 30px;">
                       </div>
                     </div>

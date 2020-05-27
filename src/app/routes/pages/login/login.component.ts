@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { CustomValidators } from "ng2-validation";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthData } from "../../../services/auth.service";
+import Swal from "sweetalert2";
+
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -33,7 +35,14 @@ export class LoginComponent implements OnInit {
       this.valForm.controls[c].markAsTouched();
     }
     if (this.valForm.valid) {
+        Swal.fire({
+          text: "Guardar información",
+          allowOutsideClick: false,
+          width: "270px",
+        });
+        Swal.showLoading();
       this.AuthService.login(value).subscribe(resp => {
+        Swal.close();
           this.router.navigateByUrl('/list')
       }, err => {
           console.log(err);
