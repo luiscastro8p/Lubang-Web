@@ -42,7 +42,7 @@
     "core-js": "2.5.4",
     "easy-pie-chart": "2.1.7",
     "enhanced-resolve": "3.3.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "fullcalendar": "3.9.0",
     "ika.jvectormap": "themicon/ika.jvectormap",
     "intl": "1.2.5",
